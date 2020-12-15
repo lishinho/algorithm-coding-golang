@@ -6,7 +6,7 @@
 > 欢迎使用 提issue以及MR
 
 # 工程结构
-+ cmd包：            运行程序主入口
++ examples包：       运行程序主入口
 + concurrency包：    golang并发场景实现例子
 + doc包：            技术文档/博客等
 + leetcode包：       golang刷leetcode常见题目
@@ -17,7 +17,14 @@
 + ProConsumer.go    生产者消费者模型
 ---
 
+## 常见考题代码
+- leetcode 22  括号生成 （回溯）
+- leetcode 55  跳跃游戏 （贪心）
+- leetcode 300 最长上升子序列 （动态规划）
+---
+
 ## TODO
++ 简单爬虫爬取网页信息
 
 
 ## 推荐常用解题模板：
