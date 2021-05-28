@@ -1,6 +1,7 @@
-package bili
+package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"runtime"
 	"strconv"
@@ -23,9 +24,9 @@ func whatCanBePrinted() {
 }
 
 func timed() {
-	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+	//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Println(time.Now().Unix())
-	fmt.Println(time.Unix(time.Now().Unix(), 0).Format("2006-01-02 15:04:05"))
+	fmt.Println(time.Unix(1622082104, 0).Format("2006-01-02 15:04:05"))
 }
 
 func goSlice() {
@@ -86,4 +87,26 @@ func deferAdd2() int {
 	i := 10
 	defer func() { i++ }()
 	return 1
+}
+
+func minus(i int) {
+	fmt.Println(-i)
+}
+
+func initArrayCanAppend() {
+	var arr []int
+	for i := 0; i < 10; i++ {
+		arr = append(arr, i)
+	}
+	fmt.Printf("%+v", arr)
+}
+
+func arrayToJson() {
+	arr := []int64{1, 2, 3, 4, 5}
+	m := map[string][]int64{
+		"str": arr,
+		"abc": arr,
+	}
+	bt, _ := json.Marshal(m)
+	fmt.Printf("%s", bt[1:len(bt)-1])
 }

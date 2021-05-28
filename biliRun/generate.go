@@ -1,4 +1,4 @@
-package bili
+package main
 
 import (
 	"encoding/csv"
@@ -27,7 +27,8 @@ func generateCsv() {
 	f.WriteString("\xEF\xBB\xBF") // 写入UTF-8 BOM
 
 	var datas [][]string
-	for j := 32431240; j < 32541343; j++ {
+	for j := 32541343; j < 33001343; j++ {
+		// 创建100万用户数据
 		var d []string
 		csv := &csvData{
 			Mid:  strconv.Itoa(j),
@@ -38,8 +39,15 @@ func generateCsv() {
 		}
 		d = append(d, csv.Mid, csv.Aid, csv.Time, csv.Bid, csv.Cid)
 		datas = append(datas, d)
-		time.Sleep(time.Millisecond * 1)
+		time.Sleep(time.Microsecond * 100)
 	}
+	datas = append(datas, []string{"32541346", "32155403", "1622003242", "12454", "222345"})
+	datas = append(datas, []string{"32541346", "32155403", "1622013242", "12454", "222345"})
+	datas = append(datas, []string{"32541346", "32155403", "1620023242", "12454", "222345"})
+	datas = append(datas, []string{"32541346", "32155403", "1622033242", "12454", "222345"})
+	datas = append(datas, []string{"32541346", "32155403", "1622043242", "12454", "222345"})
+	datas = append(datas, []string{"32541346", "32155403", "1622053242", "12454", "222345"})
+	datas = append(datas, []string{"32541346", "32155403", "1622003242", "12454", "222345"})
 
 	w := csv.NewWriter(f) //创建一个新的写入文件流
 	w.WriteAll(datas)     //写入数据
