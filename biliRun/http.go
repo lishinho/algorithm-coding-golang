@@ -34,6 +34,8 @@ type Limit struct {
 
 // url encode test
 func urlEncodeTest() {
+	deeplink, _ := url.QueryUnescape(_huaweiLink)
+	fmt.Printf("url: %s\n", deeplink)
 	fmt.Printf("url: %s\n", _huaweiLink)
-	fmt.Printf("url after: %s\n", url.QueryEscape(_huaweiLink))
+	fmt.Printf("https://live.bilibili.com/p/html/live-fansmedal-wall/index.html?is_live_webview=1\u0026tId=%d#/medal", 336)
 }

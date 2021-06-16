@@ -16,17 +16,27 @@ const (
 	InitContainers
 	// EphemeralContainers is for ephemeral containers
 	EphemeralContainers
+
+	INT_MAX = int(^uint(0) >> 1)
+	INT_MIN = ^INT_MAX
 )
+
+func 前闭后开() {
+	a := "strings"
+	fmt.Println(a[:0])
+	fmt.Println(a[:2])
+}
 
 func whatCanBePrinted() {
 	fmt.Println("由於對方隱私設置\n無法查看空間內容")
+	fmt.Println("无法查看空间内容\n请将该用户移除黑名单")
 	fmt.Println("无法查看空间内容\n请将该用户移除黑名单")
 }
 
 func timed() {
 	//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Println(time.Now().Unix())
-	fmt.Println(time.Unix(1622082104, 0).Format("2006-01-02 15:04:05"))
+	fmt.Println(time.Unix(1247499021, 0).Format("2006-01-02 15:04:05"))
 }
 
 func goSlice() {
@@ -63,7 +73,7 @@ func calculateEvenMedian(a, b int) float64 {
 
 func howManyBitsCanStand() {
 	fmt.Println(runtime.GOARCH) //CPU型号
-	fmt.Println(unsafe.Sizeof(1))
+	fmt.Println(unsafe.Sizeof(struct{}{}))
 	fmt.Println(unsafe.Sizeof(int64(1)))
 	fmt.Println(unsafe.Sizeof(int32(1)))
 	fmt.Println(unsafe.Sizeof(int8(1)))
@@ -109,4 +119,9 @@ func arrayToJson() {
 	}
 	bt, _ := json.Marshal(m)
 	fmt.Printf("%s", bt[1:len(bt)-1])
+}
+
+func maxInteger() {
+	fmt.Println(INT_MAX)
+	fmt.Println(INT_MIN)
 }

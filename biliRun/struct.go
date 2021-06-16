@@ -31,8 +31,9 @@ type ReserveActExtra struct {
 }
 
 type HiddenAttribute struct {
-	IsSpaceHidden bool   `json:"is_space_hidden,omitempty"`
-	Text          string `json:"text,omitempty"`
+	IsSpaceHidden  bool   `json:"is_space_hidden,omitempty"`
+	Text           string `json:"text,omitempty"`
+	AiExtraMetrics map[int]map[string]interface{}
 }
 
 type ReserveActSkin struct {
@@ -50,7 +51,7 @@ var _thumbUpSlice = []string{"story_like_combo_22", "story_like_combo_33", "stor
 
 const (
 	_authKey    = "%s:32368a9369d6571b85cb4f6075d591daf77da09bc338b8154c5769932ab20b82"
-	_huaweiLink = "/ddl/deeplink"
+	_huaweiLink = "bilibili%3A%2F%2Fbangumi%2Fseason%2F31778%3Fh5awaken%3Db3Blbl9hcHBfZnJvbV90eXBlPWRlZXBsa"
 )
 
 func randomPick() {
@@ -140,4 +141,17 @@ func bytesToHexString(b []byte) string {
 		}
 	}
 	return buf.String()
+}
+
+type Param struct {
+	name string
+}
+
+func updateMapValueMap() {
+	s := map[int]Param{
+		1: {"lx"},
+	}
+	// s[1].name = "ok"  这里这样赋值是错误的！！！
+	r := s[1]
+	r.name = "ok"
 }
