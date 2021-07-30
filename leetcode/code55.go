@@ -14,10 +14,3 @@ func canJump(nums []int) bool {
 	}
 	return false
 }
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}

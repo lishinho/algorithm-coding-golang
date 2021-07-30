@@ -6,3 +6,16 @@ func max(a, b int) int {
 	}
 	return a
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+type LRUCache struct {
+	capcity int
+}
+
+func (*LRUCache) name() {
+
+}

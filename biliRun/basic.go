@@ -17,14 +17,15 @@ const (
 	// EphemeralContainers is for ephemeral containers
 	EphemeralContainers
 
-	INT_MAX = int(^uint(0) >> 1)
-	INT_MIN = ^INT_MAX
+	IntMax  = int(^uint(0) >> 1)
+	IntMin  = ^IntMax
+	IntMock = ^uint(0)
 )
 
 func 前闭后开() {
-	a := "strings"
+	a := "string"
 	fmt.Println(a[:0])
-	fmt.Println(a[:2])
+	fmt.Println(a[:len(a)-1])
 }
 
 func whatCanBePrinted() {
@@ -36,7 +37,7 @@ func whatCanBePrinted() {
 func timed() {
 	//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Println(time.Now().Unix())
-	fmt.Println(time.Unix(1247499021, 0).Format("2006-01-02 15:04:05"))
+	fmt.Println(time.Unix(1627300800, 0).Format("2006-01-02 15:04:05"))
 }
 
 func goSlice() {
@@ -111,6 +112,12 @@ func initArrayCanAppend() {
 	fmt.Printf("%+v", arr)
 }
 
+func appendNil() {
+	var arr []*Hot
+	arr = append(arr, nil)
+	fmt.Printf("%+v", arr)
+}
+
 func arrayToJson() {
 	arr := []int64{1, 2, 3, 4, 5}
 	m := map[string][]int64{
@@ -122,6 +129,25 @@ func arrayToJson() {
 }
 
 func maxInteger() {
-	fmt.Println(INT_MAX)
-	fmt.Println(INT_MIN)
+	fmt.Println(IntMax)
+	fmt.Println(IntMin)
+}
+
+func jsonMarshalT() {
+	var res int64
+	if err := json.Unmarshal(nil, &res); err != nil {
+		fmt.Printf("error %+v", err)
+		return
+	}
+	fmt.Println(res)
+}
+
+func testMapNil() {
+	var mm map[int64]*ReserveActExtra
+	if v, ok := mm[3]; ok {
+		fmt.Println(v.IsValid)
+	}
+	fmt.Println(IntMax)
+	fmt.Println(IntMin)
+	fmt.Println(IntMock)
 }

@@ -19,6 +19,7 @@ type Hot struct {
 	Code    int    `json:"code,omitempty"`
 	SeID    string `json:"seid,omitempty"`
 	TrackID string `json:"trackid"`
+	HasMore bool   `json:"has_more"`
 	Ffffff  struct {
 		Keyword   string `json:"keyword,omitempty"`
 		IsExisted bool   `json:"is_ex,omitempty"`
@@ -26,8 +27,9 @@ type Hot struct {
 }
 
 type ReserveActExtra struct {
-	Skin   ReserveActSkin `json:"skin,omitempty"`
-	ActUrl string         `json:"act_url,omitempty"`
+	Skin    *ReserveActSkin `json:"skin,omitempty"`
+	ActUrl  string          `json:"act_url,omitempty"`
+	IsValid bool            `json:"is_valid,omitempty"`
 }
 
 type HiddenAttribute struct {
@@ -40,6 +42,10 @@ type ReserveActSkin struct {
 	Svga      string `json:"svga,omitempty"`
 	LastImg   string `json:"last_img,omitempty"`
 	PlayTimes bool   `json:"play_times,omitempty"`
+	Ffffff    struct {
+		Keyword   string `json:"keyword,omitempty"`
+		IsExisted bool   `json:"is_ex,omitempty"`
+	} `json:"fff,omitempty"`
 }
 
 type PopularWatchTime struct {
@@ -53,6 +59,12 @@ const (
 	_authKey    = "%s:32368a9369d6571b85cb4f6075d591daf77da09bc338b8154c5769932ab20b82"
 	_huaweiLink = "bilibili%3A%2F%2Fbangumi%2Fseason%2F31778%3Fh5awaken%3Db3Blbl9hcHBfZnJvbV90eXBlPWRlZXBsa"
 )
+
+func isItNil() {
+	act := &ReserveActExtra{}
+	act.Skin.PlayTimes = true
+	fmt.Printf("act %v", act)
+}
 
 func randomPick() {
 	time := time2.Now()
@@ -104,6 +116,8 @@ func whenArrayPanic() {
 	}
 	fmt.Printf("ddd %+v\n", hots)
 	hots = append(hots, hot)
+	bs, _ := json.Marshal(hot)
+	fmt.Print(string(bs))
 	fmt.Printf("ddd %+v\n", hots)
 }
 
