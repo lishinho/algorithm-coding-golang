@@ -37,7 +37,7 @@ func whatCanBePrinted() {
 func timed() {
 	//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Println(time.Now().Unix())
-	fmt.Println(time.Unix(1627300800, 0).Format("2006-01-02 15:04:05"))
+	fmt.Println(time.Unix(1638201600, 0).Format("2006-01-02 15:04:05"))
 }
 
 func goSlice() {

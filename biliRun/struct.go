@@ -49,8 +49,9 @@ type ReserveActSkin struct {
 }
 
 type PopularWatchTime struct {
-	Aid  int64 `json:"aid" form:"aid"`
-	Time int64 `json:"time" form:"time"`
+	Aid     int64  `json:"aid" form:"aid"`
+	Time    int64  `json:"time" form:"time"`
+	TestStr string `json:"test_str"`
 }
 
 var _thumbUpSlice = []string{"story_like_combo_22", "story_like_combo_33", "story_like_combo_tv"}
@@ -168,4 +169,21 @@ func updateMapValueMap() {
 	// s[1].name = "ok"  这里这样赋值是错误的！！！
 	r := s[1]
 	r.name = "ok"
+}
+
+func urlParse() {
+	// 解析原始link
+	u, err := url.Parse("bilibili://bangumi/season/11978?h5awaken=b3Blbl9hcHBfZnJvbV90eXBlPWRlZXBsaW5rX2dkdGxoaW9zLWFuZC%2B15Zi0zMXlhei0xOTE4NjA5MyZvcGVuX2FwcF91cmw9c3MxMTk3OA==&from_spmid=out_open_deeplink_gdtlhios-and-yf-31yaz-19186093")
+	if err != nil {
+		fmt.Printf("err=%+v\n", err)
+		return
+	}
+	// 解析h5awaken
+	u.Query().Get("h5awaken")
+	//params, err := url.ParseQuery(u.RawQuery)
+	//if err != nil {
+	//	fmt.Printf("err=%+v\n", err)
+	//	return
+	//}
+	fmt.Printf("params=%+v\n", u.Query().Get("h5awaken"))
 }
