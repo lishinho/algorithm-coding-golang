@@ -1,10 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-	fmt.Println(AvToBv(5331061))
-	fmt.Println(BvToAv("BV1d54y1R7pg"))
+	fmt.Println(AvToBv(895300997))
+	fmt.Println(BvToAv("BV1bg411A7pa"))
 	//fmt.Println(authorize())
-	urlParse()
+	fmt.Println(math.MaxInt32)
 }

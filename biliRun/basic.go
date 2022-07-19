@@ -3,8 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"runtime"
 	"strconv"
+	"strings"
 	"time"
 	"unsafe"
 )
@@ -37,17 +39,22 @@ func whatCanBePrinted() {
 func timed() {
 	//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Println(time.Now().Unix())
-	fmt.Println(time.Unix(1638201600, 0).Format("2006-01-02 15:04:05"))
+	fmt.Println(time.Unix(866131200, 0).Format("2006-01-02 15:04:05"))
+	fmt.Println(strconv.FormatInt(time.Now().UnixNano()/1000000, 10))
 }
 
 func goSlice() {
+	m := map[int]int{}
 	for _, i := range []int{1, 2, 3, 4, 5} {
+		fmt.Printf("sdss=%d\n", i)
+		m[i] = i + 1
 		//i := i
-		go func() {
-			fmt.Println(i)
-		}()
+		//go func() {
+		//	fmt.Println(i)
+		//}()
 	}
-	time.Sleep(time.Second * 5)
+	fmt.Printf("map %+v\n", m)
+	time.Sleep(time.Second * 1)
 }
 
 func a(i int) {
@@ -88,6 +95,38 @@ func basicIotaValues() {
 	fmt.Println(EphemeralContainers)
 }
 
+func printLenCap(nums []int) {
+	fmt.Printf("len: %d, cap: %d %v\n", len(nums), cap(nums), nums)
+}
+
+func basicMapNilTest() {
+	m := map[string]int{}
+	m = nil
+	fmt.Printf("sss %+v", m["sss"])
+	fmt.Printf("111")
+}
+
+func RoundHalfUp(val float64, precision int) float64 {
+	p := math.Pow10(precision)
+	return math.Floor(val*p+0.5) / p
+}
+
+func testSlice() {
+	nums := make([]int, 0, 8)
+	nums = append(nums, 1, 2, 3, 4, 5)
+	nums2 := nums[2:4]
+	printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 5]
+	printLenCap(nums2) // len: 2, cap: 6 [3 4]
+
+	nums2 = append(nums2, 50, 60)
+	printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 50]
+	printLenCap(nums2) // len: 4, cap: 6 [3 4 50 60]
+
+	nums2 = append(nums2, 1, 2, 3, 4, 5)
+	printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 50]
+	printLenCap(nums2) // len: 9, cap: 12 [3 4 50 60, 1, 2, 3, 4, 5]
+}
+
 func deferAdd1() (i int) {
 	i = 10
 	defer func() { i++ }()
@@ -114,7 +153,7 @@ func initArrayCanAppend() {
 
 func appendNil() {
 	var arr []*Hot
-	arr = append(arr, nil)
+	arr = append(arr, nil, nil)
 	fmt.Printf("%+v", arr)
 }
 
@@ -150,4 +189,19 @@ func testMapNil() {
 	fmt.Println(IntMax)
 	fmt.Println(IntMin)
 	fmt.Println(IntMock)
+}
+
+func stringCount() {
+	s := "[星][星][星][星]\n好看[星]"
+	ss := "[星]"
+
+	fmt.Println(strings.Count(s[:strings.Index(s, "\n")], ss))
+	fmt.Println(ss[strings.Index(ss, "\n")+1:])
+}
+
+func mapPaixu() {
+	dynamicIdMap := map[int64]int64{1: 1, 2: 2, 3: 3}
+	for k, v := range dynamicIdMap {
+		fmt.Println(k, v)
+	}
 }

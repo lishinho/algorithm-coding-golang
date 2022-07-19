@@ -10,16 +10,68 @@ import (
 
 var str = "b3Blbl9hcHBfZnJvbV90eXBlPWRlZXBsaW5rX3R0bGgtYW5kLXJkLTMxeWF6LTE2Nzc5NTY3Mzc5MjgxOTkmb3Blbl9hcHBfdXJsPXNzMzkzMTE="
 
+type TmpSlice struct {
+	Num  int64
+	Name string
+}
+
 func sortArray() {
-	tmp := []int{6, 2, 3, 4, 3, 2, 5, 43}
-	// 从大到小
+	//tmp := []int{0, 0, 0, 4, 3, 2, 5, 43}
+	tmpSlice := []*TmpSlice{
+		{
+			Num:  0,
+			Name: "aaa",
+		},
+		{
+			Num:  0,
+			Name: "bbb",
+		},
+		{
+			Num:  0,
+			Name: "ccc",
+		},
+		{
+			Num:  26,
+			Name: "ddd",
+		},
+		{
+			Num:  13,
+			Name: "eee",
+		},
+		{
+			Num:  21,
+			Name: "fff",
+		},
+		{
+			Num:  7,
+			Name: "ggg",
+		},
+		{
+			Num:  21,
+			Name: "hhh",
+		},
+	}
+	//从大到小
 	//sort.SliceStable(tmp, func(i, j int) bool {
+	//	if tmp[i] == 0 || tmp[j] == 0 {
+	//		return false
+	//	}
 	//	return tmp[i] > tmp[j]
 	//})
 
+	sort.SliceStable(tmpSlice, func(i, j int) bool {
+		if tmpSlice[i].Num == 0 || tmpSlice[j].Num == 0 {
+			return false
+		}
+		return tmpSlice[i].Num > tmpSlice[j].Num
+	})
+
 	// 从小到大
-	sort.Ints(tmp)
-	fmt.Println(tmp)
+	//sort.Ints(tmp)
+	for _, v := range tmpSlice {
+		fmt.Printf("num=%+v, name=%+v\n", v.Num, v.Name)
+	}
+
 }
 
 func baseDecode() {
