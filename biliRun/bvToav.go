@@ -48,6 +48,10 @@ func AvToBv(avid int64) (bvid string, err error) {
 	return
 }
 
+func negativeNumber(num int) int {
+	return ^num + 1
+}
+
 // BvToAv bvid to avid
 func BvToAv(bvid string) (avid int64, err error) {
 	if bvid == "" {
