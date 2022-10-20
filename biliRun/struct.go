@@ -67,6 +67,14 @@ func isItNil() {
 	fmt.Printf("act %v", act)
 }
 
+func memoryAddress() {
+	var act ReserveActExtra
+	act.ActUrl = "xxx"
+	p1 := &act.ActUrl
+	p2 := (&act).ActUrl
+	fmt.Printf("%+v, %+v\n", p1, p2)
+}
+
 func randomPick() {
 	time := time2.Now()
 	for i := 0; i < 10; i++ {

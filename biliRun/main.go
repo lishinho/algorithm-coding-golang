@@ -1,12 +1,10 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(AvToBv(895300997))
+	fmt.Println(AvToBv(602109295))
 	fmt.Println(BvToAv("BV1bg411A7pa"))
-	//fmt.Println(authorize())
-	fmt.Println(negativeNumber(-9))
+	//前闭后开()
+	fmt.Println(resolveCacheTimeout())
 }

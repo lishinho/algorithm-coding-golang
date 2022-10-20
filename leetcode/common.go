@@ -12,7 +12,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-type LRUCache struct {
+type LRUCache2 struct {
 	capcity int
 }
 

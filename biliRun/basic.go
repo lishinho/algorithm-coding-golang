@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"go-common/library/ecode"
 	"math"
 	"runtime"
 	"strconv"
@@ -12,7 +13,7 @@ import (
 )
 
 const (
-	// Containers is for normal containers
+	// Containers are for normal containers
 	Containers int = 1 << iota
 	// InitContainers is for init containers
 	InitContainers
@@ -28,6 +29,8 @@ func 前闭后开() {
 	a := "string"
 	fmt.Println(a[:0])
 	fmt.Println(a[:len(a)-1])
+	b := 1
+	fmt.Println(-b)
 }
 
 func whatCanBePrinted() {
@@ -55,10 +58,6 @@ func goSlice() {
 	}
 	fmt.Printf("map %+v\n", m)
 	time.Sleep(time.Second * 1)
-}
-
-func a(i int) {
-	fmt.Println(i)
 }
 
 func outOfArrayGet() {
@@ -170,6 +169,18 @@ func arrayToJson() {
 func maxInteger() {
 	fmt.Println(IntMax)
 	fmt.Println(IntMin)
+}
+
+func checkEcodeNil() {
+	Myecode := (*ecode.Code)(nil)
+	var err error
+	err = Myecode
+	if err == nil {
+		fmt.Println("sss")
+	}
+	if Myecode == nil {
+		fmt.Println("s")
+	}
 }
 
 func jsonMarshalT() {
