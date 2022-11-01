@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/gogo/protobuf/jsonpb"
 	"google.golang.org/grpc"
@@ -43,7 +45,6 @@ func grpcJsonGet() {
 		Marshaler: jsonpb.Marshaler{
 			EmitDefaults: true,
 			OrigName:     true,
-			Indent:       "\t",
 		},
 	})
 	// grpc客户端的拨号选择器
@@ -59,7 +60,8 @@ func grpcJsonGet() {
 	if err != nil {
 		panic(err)
 	}
-	// 打印reply
-	//data , _ := json.MarshalIndent(reply.res, "", "\t")
-	fmt.Println(string(reply.res))
+	// 打印prettyJSON
+	var prettyJSON bytes.Buffer
+	_ = json.Indent(&prettyJSON, reply.res, "", "\t🐱")
+	fmt.Println(prettyJSON.String())
 }
