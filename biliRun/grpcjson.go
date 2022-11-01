@@ -8,6 +8,8 @@ import (
 	"github.com/gogo/protobuf/jsonpb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/encoding"
+	"io"
+	"net/http"
 )
 
 type JSON struct {
@@ -53,15 +55,38 @@ func grpcJsonGet() {
 	}
 	opts = append(opts, grpc.WithInsecure()) // 不用tls
 	// grpc客户端指定ip端口连接
-	conn, err := grpc.Dial("10.230.33.191:9000", opts...)
+	conn, err := grpc.Dial("10.230.45.63:8080", opts...)
 	var reply Reply
 	// 调用 + &reply
-	err = grpc.Invoke(context.Background(), "/onip.item_asset.service.v1.ItemAssetService/GetItemSeriesAssetSingle", []byte("{\"item_id\": 12}"), &reply, conn)
+	err = grpc.Invoke(context.Background(), "/pangu.oversea.apiserver.v1alpha1.APIServer/ListMallFrontPageGoods", []byte("{}"), &reply, conn)
 	if err != nil {
 		panic(err)
 	}
 	// 打印prettyJSON
 	var prettyJSON bytes.Buffer
 	_ = json.Indent(&prettyJSON, reply.res, "", "\t🐱")
+	fmt.Println(prettyJSON.String())
+}
+
+func httpJsonGet() {
+	// 填想要请求的路径
+	addr := "http://10.230.45.63:8080/apis/v1alpha1/mall/list_goods"
+	// http 请求
+	var Body io.Reader
+	req, err := http.NewRequestWithContext(context.Background(), http.MethodPost, addr, Body)
+	if err != nil {
+		panic(err)
+	}
+	// http do
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	// 读body
+	b, err := io.ReadAll(resp.Body)
+	resp.Body.Close()
+	// pretty json
+	var prettyJSON bytes.Buffer
+	_ = json.Indent(&prettyJSON, b, "", "    ")
 	fmt.Println(prettyJSON.String())
 }
