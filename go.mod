@@ -4,6 +4,8 @@ go 1.19
 
 require (
 	github.com/ethereum/go-ethereum v1.10.25
+	github.com/gogo/protobuf v1.3.0
+	github.com/speps/go-hashids v2.0.0+incompatible
 	go-common v1.33.1
 	google.golang.org/grpc v1.43.0
 )

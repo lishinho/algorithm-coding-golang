@@ -10,6 +10,8 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 )
 
+// 测试通过eth客户端拿pending txn
+
 const (
 	AlchemyMainnetWssurl = "wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN"
 )
