@@ -156,16 +156,6 @@ func appendNil() {
 	fmt.Printf("%+v", arr)
 }
 
-func arrayToJson() {
-	arr := []int64{1, 2, 3, 4, 5}
-	m := map[string][]int64{
-		"str": arr,
-		"abc": arr,
-	}
-	bt, _ := json.Marshal(m)
-	fmt.Printf("%s", bt[1:len(bt)-1])
-}
-
 func maxInteger() {
 	fmt.Println(IntMax)
 	fmt.Println(IntMin)

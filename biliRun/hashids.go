@@ -14,6 +14,7 @@ func hash() {
 	h, _ := hashids.NewWithData(hd)
 	e, _ := h.Encode([]int{45})
 	fmt.Println(e)
+
 	d, _ := h.DecodeWithError(e)
 	fmt.Println(d)
 }
