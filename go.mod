@@ -3,9 +3,9 @@ module algorithm-coding
 go 1.19
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/ethereum/go-ethereum v1.10.25
 	github.com/gogo/protobuf v1.3.0
-	github.com/google/uuid v1.2.0
 	github.com/speps/go-hashids v2.0.0+incompatible
 	go-common v0.0.0-00010101000000-000000000000
 	google.golang.org/grpc v1.43.0
@@ -13,6 +13,7 @@ require (
 
 require (
 	github.com/StackExchange/wmi v1.2.1 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0 // indirect
 	github.com/deckarep/golang-set v1.8.0 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.0.1 // indirect

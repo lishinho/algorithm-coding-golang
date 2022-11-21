@@ -6,6 +6,7 @@ import (
 	"go-common/library/ecode"
 	"math"
 	"runtime"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -42,7 +43,9 @@ func whatCanBePrinted() {
 func timed() {
 	//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	fmt.Println(time.Now().Unix())
-	fmt.Println(time.Unix(866131200, 0).Format("2006-01-02 15:04:05"))
+	loc, _ := time.LoadLocation("Brazil/DeNoronha")
+	fmt.Println(time.Now().In(loc).Format(time.RFC3339))
+	fmt.Println(time.Unix(-866131200, 0).Format("2006-01-02 15:04:05"))
 	fmt.Println(strconv.FormatInt(time.Now().UnixNano()/1000000, 10))
 }
 
@@ -198,6 +201,12 @@ func stringCount() {
 
 	fmt.Println(strings.Count(s[:strings.Index(s, "\n")], ss))
 	fmt.Println(ss[strings.Index(ss, "\n")+1:])
+}
+
+func searchTarget() {
+	arr := []int{1, 2, 3, 44, 5, 66, 7, 88, 9}
+	target := 100
+	fmt.Println(sort.SearchInts(arr, target))
 }
 
 func mapPaixu() {

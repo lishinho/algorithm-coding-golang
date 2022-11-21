@@ -1,0 +1,37 @@
+package main
+
+import (
+	"fmt"
+	"github.com/PuerkitoBio/goquery"
+	"io"
+	"log"
+	"net/http"
+)
+
+func ExampleScrape() {
+	// Request the HTML page.
+	res, err := http.Get("http://metalsucks.net")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
+	}
+	// 读body
+	b, err := io.ReadAll(res.Body)
+	fmt.Println(string(b))
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Find the review items
+	doc.Find(".left-content article .post-title").Each(func(i int, s *goquery.Selection) {
+		// For each item found, get the title
+		title := s.Find("a").Text()
+		fmt.Printf("Review %d: %s\n", i, title)
+	})
+}

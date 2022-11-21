@@ -6,7 +6,6 @@ package cmd
 import (
 	"fmt"
 	"github.com/google/uuid"
-
 	"github.com/spf13/cobra"
 )
 
@@ -20,17 +19,15 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(uuid.NewString())
-		if len(args) > 0 {
-			fmt.Println(args[0])
-		}
-		getString, err := cmd.PersistentFlags().GetString("foo")
-		if err != nil {
-			return
-		}
-		fmt.Println(getString)
-	},
+	Run: somethingCommand(),
+}
+
+type CommandRun func(cmd *cobra.Command, args []string)
+
+func somethingCommand() CommandRun {
+	return func(cmd *cobra.Command, args []string) {
+		fmt.Println("生成一条随机数据：" + uuid.NewString())
+	}
 }
 
 func init() {

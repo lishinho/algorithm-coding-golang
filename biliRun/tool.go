@@ -101,15 +101,3 @@ func timeStampToTime() {
 	minute := timeObj.Minute() //分钟
 	fmt.Printf("%d年%02d月%02d日 %02d:%02d开始", year, month, day, hour, minute)
 }
-
-func switchTestcase() {
-	id := 1
-	switch {
-	case true:
-		fmt.Println("顺序来")
-	case id < 2:
-		fmt.Println("不一定顺序来")
-	default:
-		fmt.Println("222")
-	}
-}
