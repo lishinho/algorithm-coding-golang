@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"io"
 	"log"
 	"net/http"
 )
@@ -19,8 +18,8 @@ func ExampleScrape() {
 		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
 	}
 	// 读body
-	b, err := io.ReadAll(res.Body)
-	fmt.Println(string(b))
+	//b, err := io.ReadAll(res.Body)
+	//fmt.Println(string(b))
 
 	// Load the HTML document
 	doc, err := goquery.NewDocumentFromReader(res.Body)
