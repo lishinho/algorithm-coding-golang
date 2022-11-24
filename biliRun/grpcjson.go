@@ -70,13 +70,15 @@ func grpcJsonGet() {
 
 func httpJsonGet() {
 	// 填想要请求的路径
-	addr := "http://10.230.45.63:8080/apis/v1alpha1/mall/list_goods"
+	addr := "https://qyapi.weixin.qq.com/cgi-bin/webhook/upload_media?key=50dda777-efd3-4ab2-a738-c740416dace9&type=file"
 	// http 请求
 	var Body io.Reader
 	req, err := http.NewRequestWithContext(context.Background(), http.MethodPost, addr, Body)
 	if err != nil {
 		panic(err)
 	}
+	req.Header.Set("Content-Type", "multipart/form-data")
+	req.Header.Set("Content-Disposition", "form-data; name=\"media\";filename=\"wework.txt\"; filelength=6")
 	// http do
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
