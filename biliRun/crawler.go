@@ -1,10 +1,13 @@
 package main
 
+//go:generate goimports -w crawler.go
+
 import (
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"log"
 	"net/http"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 func ExampleScrape() {
