@@ -55,10 +55,10 @@ func grpcJsonGet() {
 	}
 	opts = append(opts, grpc.WithInsecure()) // 不用tls
 	// grpc客户端指定ip端口连接
-	conn, err := grpc.Dial("10.230.33.191:9000", opts...)
+	conn, err := grpc.Dial("172.22.17.120:9000", opts...)
 	var reply Reply
 	// 调用 + &reply
-	err = grpc.Invoke(context.Background(), "/onip.item_asset.service.v1.ItemAssetService/GetItemSeriesAssetSingle", []byte("{\"item_id\": 12}"), &reply, conn)
+	err = grpc.Invoke(context.Background(), "/main.community.emote_service.v1.EmoteService/UserPanelPackageBiz", []byte("{\n    \"mid\": \"382719467\",\n    \"up_mid\": \"423895\",\n    \"business\": \"reply\"\n}"), &reply, conn)
 	if err != nil {
 		panic(err)
 	}

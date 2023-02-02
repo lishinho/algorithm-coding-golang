@@ -12,7 +12,7 @@ func hash() {
 	hd.Salt = "this is my salt"
 	hd.MinLength = 12
 	h, _ := hashids.NewWithData(hd)
-	e, _ := h.Encode([]int{45})
+	e, _ := h.Encode([]int{10})
 	fmt.Println(e)
 
 	d, _ := h.DecodeWithError(e)
