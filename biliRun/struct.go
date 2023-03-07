@@ -33,8 +33,8 @@ type ReserveActExtra struct {
 }
 
 type HiddenAttribute struct {
-	IsSpaceHidden  bool   `json:"is_space_hidden,omitempty"`
-	Text           string `json:"text,omitempty"`
+	IsSpaceHidden  bool `json:"is_space_hidden,omitempty"`
+	Text           int  `json:"text,omitempty"`
 	AiExtraMetrics map[int]map[string]interface{}
 }
 

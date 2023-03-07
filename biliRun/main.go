@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"math"
 	"mosn.io/holmes"
@@ -14,19 +16,44 @@ type Agreement struct {
 
 func main() {
 	//fmt.Println(AvToBv(602109295))
-	//fmt.Println(BvToAv("BV16G411K7Hq"))
+	fmt.Println(BvToAv("BV1z24y137CU"))
 	//前闭后开()
-	m := []int{1, 2, 3, 4, 5}
-	m = rotate(m)
-	fmt.Printf("%+v\n", m)
+	//fmt.Println(calculateDiffDays2(time.Now(), time.Now().Add(33*time.Hour)))
+	//fmt.Println(calculateDiffDays(time.Now(), time.Now().Add(33*time.Hour)))
 	//fmt.Printf("%p\n", m)
 	//a := m
 	//a[0] = 100
 	//fmt.Printf("%+v", a)
+	m := make(map[int64]bool, 4)
+	m[3] = true
+	fmt.Printf("%+v", m)
+	fmt.Printf("%+v", Md5("[UPOWER_2054502104988661_新增4]", []byte{}))
+}
+
+//get upower:emo:text:356136e203e15ce522fcdf0ac3200b34
+
+func Md5(plaintext string, salt []byte) string {
+	if plaintext == "" {
+		return ""
+	}
+	hash := md5.New()
+	hash.Write([]byte(plaintext))
+	hash.Write([]byte(salt))
+	mh := hash.Sum(nil)
+	return hex.EncodeToString(mh[:])
+}
+
+func calculateDiffDays2(a, b time.Time) int64 {
+	return int64(math.Abs(truncateToDay(a).Sub(truncateToDay(b)).Hours()) / 24)
+}
+
+func truncateToDay(a time.Time) time.Time {
+	return time.Date(a.Year(), a.Month(), a.Day(), 0, 0, 0, 0, time.Local)
 }
 
 func calculateDiffDays(a, b time.Time) int64 {
-	return int64(math.Round(a.Sub(b).Abs().Hours()))
+
+	return int64(math.Abs(float64(a.Truncate(24 * time.Hour).Sub(b.Truncate(24 * time.Hour)))))
 }
 
 func rotate(m []int) []int {
